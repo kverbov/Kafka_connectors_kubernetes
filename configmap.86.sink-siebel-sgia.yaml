@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: sink-siebel-sgia
+  name: sink-siebel-depart
   namespace: dbzm-prod
 data:
-  sink-siebel-s-contact-sgia.connector.config.json: |-
+  sink-siebel-s-contact-depart.connector.config.json: |-
       {
-         "name": "sink-siebel-s-contact-sgia.connector",
+         "name": "sink-siebel-s-contact-depart.connector",
          "config": {
              "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
              "tasks.max":"1",
-             "topics":"sgia.siebel.prod.cdc.S_CONTACT",
+             "topics":"depart.siebel.prod.cdc.S_CONTACT",
              "connection.url": "jdbc:postgresql://192.168.1.2:5432/bank",
              "connection.user": "user",
              "connection.password": "password",
@@ -29,13 +29,13 @@ data:
          }
       }
 
-  sink-siebel-s-user-sgia.connector.config.json: |-
+  sink-siebel-s-user-depart.connector.config.json: |-
       {
-         "name": "sink-siebel-s-user-sgia.connector",
+         "name": "sink-siebel-s-user-depart.connector",
          "config": {
              "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
              "tasks.max":"1",
-             "topics":"sgia.siebel.prod.cdc.S_USER",
+             "topics":"depart.siebel.prod.cdc.S_USER",
              "connection.url": "jdbc:postgresql://192.168.1.2:5432/bank",
              "connection.user": "user",
              "connection.password": "password",
@@ -54,13 +54,13 @@ data:
          }
       }
 
-  sink-siebel-cx-consent-sgia.connector.config.json: |-
+  sink-siebel-cx-consent-depart.connector.config.json: |-
       {
-         "name": "sink-siebel-cx-consent-sgia.connector",
+         "name": "sink-siebel-cx-consent-depart.connector",
          "config": {
              "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
              "tasks.max":"1",
-             "topics":"sgia.siebel.prod.cdc.CX_CONSENT",
+             "topics":"depart.siebel.prod.cdc.CX_CONSENT",
              "connection.url": "jdbc:postgresql://192.168.1.2:5432/bank",
              "connection.user": "user",
              "connection.password": "password",
@@ -79,13 +79,13 @@ data:
          }
       }
 
-  sink-siebel-cx-consent-type-sgia.connector.config.json: |-
+  sink-siebel-cx-consent-type-depart.connector.config.json: |-
       {
-         "name": "sink-siebel-cx-consent-type-sgia.connector",
+         "name": "sink-siebel-cx-consent-type-depart.connector",
          "config": {
              "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
              "tasks.max":"1",
-             "topics":"sgia.siebel.prod.cdc.CX_CONSENT_TYPE",
+             "topics":"depart.siebel.prod.cdc.CX_CONSENT_TYPE",
              "connection.url": "jdbc:postgresql://192.168.1.2:5432/bank",
              "connection.user": "user",
              "connection.password": "password",
@@ -104,13 +104,13 @@ data:
          }
       }
 
-  sink-siebel-cx-cont-idents-sgia.connector.config.json: |-
+  sink-siebel-cx-cont-idents-depart.connector.config.json: |-
       {
-         "name": "sink-siebel-cx-cont-idents-sgia.connector",
+         "name": "sink-siebel-cx-cont-idents-depart.connector",
          "config": {
              "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
              "tasks.max":"1",
-             "topics":"sgia.siebel.prod.cdc.CX_CONT_IDENTS",
+             "topics":"depart.siebel.prod.cdc.CX_CONT_IDENTS",
              "connection.url": "jdbc:postgresql://192.168.1.2:5432/bank",
              "connection.user": "user",
              "connection.password": "password",
@@ -130,13 +130,13 @@ data:
       }
 
 
-  sink-siebel-employee-sgia.connector.config.json: |-
+  sink-siebel-employee-depart.connector.config.json: |-
       {
-         "name": "sink-siebel-employee-sgia.connector",
+         "name": "sink-siebel-employee-depart.connector",
          "config": {
              "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
              "tasks.max":"1",
-             "topics":"sgia.siebel.prod.cdc.employee",
+             "topics":"depart.siebel.prod.cdc.employee",
              "connection.url": "jdbc:postgresql://192.168.1.2:5432/bank",
              "connection.user": "user",
              "connection.password": "password",
@@ -155,13 +155,13 @@ data:
          }
       }
 
-  sink-siebel-s-per-comm-addr-sgia.connector.config.json: |-
+  sink-siebel-s-per-comm-addr-depart.connector.config.json: |-
       {
-         "name": "sink-siebel-s-per-comm-addr-sgia.connector",
+         "name": "sink-siebel-s-per-comm-addr-depart.connector",
          "config": {
              "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
              "tasks.max":"1",
-             "topics":"sgia.siebel.prod.cdc.S_PER_COMM_ADDR",
+             "topics":"depart.siebel.prod.cdc.S_PER_COMM_ADDR",
              "connection.url": "jdbc:postgresql://192.168.1.2:5432/bank",
              "connection.user": "user",
              "connection.password": "password",
@@ -180,13 +180,13 @@ data:
          }
       }
 
-  sink-siebel-cx-prem-pm-sgia.connector.config.json: |-
+  sink-siebel-cx-prem-pm-depart.connector.config.json: |-
       {
-         "name": "sink-siebel-cx-prem-pm-sgia.connector",
+         "name": "sink-siebel-cx-prem-pm-depart.connector",
          "config": {
              "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
              "tasks.max":"1",
-             "topics":"sgia.siebel.prod.cdc.cx_prem_pm",
+             "topics":"depart.siebel.prod.cdc.cx_prem_pm",
              "connection.url": "jdbc:postgresql://192.168.1.2:5432/bank",
              "connection.user": "user",
              "connection.password": "password",
@@ -205,13 +205,13 @@ data:
          }
       }
 
-  sink-siebel-cx-vip-spc-attr-sgia.connector.config.json: |-
+  sink-siebel-cx-vip-spc-attr-depart.connector.config.json: |-
       {
-         "name": "sink-siebel-cx-vip-spc-attr-sgia.connector",
+         "name": "sink-siebel-cx-vip-spc-attr-depart.connector",
          "config": {
              "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
              "tasks.max":"1",
-             "topics":"sgia.siebel.prod.cdc.cx_vip_spc_attr",
+             "topics":"depart.siebel.prod.cdc.cx_vip_spc_attr",
              "connection.url": "jdbc:postgresql://192.168.1.2:5432/bank",
              "connection.user": "user",
              "connection.password": "password",
@@ -230,13 +230,13 @@ data:
          }
       }
 
-  sink-siebel-cx_glddbl_con-sgia.connector.config.json: |-
+  sink-siebel-cx_glddbl_con-depart.connector.config.json: |-
       {
-         "name": "sink-siebel-cx_glddbl_con-sgia.connector",
+         "name": "sink-siebel-cx_glddbl_con-depart.connector",
          "config": {
              "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
              "tasks.max":"1",
-             "topics":"sgia.siebel.prod.cdc.CX_GLDDBL_CON",
+             "topics":"depart.siebel.prod.cdc.CX_GLDDBL_CON",
              "connection.url": "jdbc:postgresql://192.168.1.2:5432/bank",
              "connection.user": "user",
              "connection.password": "password",
@@ -258,9 +258,9 @@ data:
     
   .envs: |-
     #{ Dynamic (custom for each connector)
-    CONFIG_STORAGE_TOPIC="siebel.prod.sgia.cdct.sink.configs"
-    OFFSET_STORAGE_TOPIC="siebel.prod.sgia.cdct.sink.offsets"
-    STATUS_STORAGE_TOPIC="siebel.prod.sgia.cdct.sink.statuses"
+    CONFIG_STORAGE_TOPIC="siebel.prod.depart.cdct.sink.configs"
+    OFFSET_STORAGE_TOPIC="siebel.prod.depart.cdct.sink.offsets"
+    STATUS_STORAGE_TOPIC="siebel.prod.depart.cdct.sink.statuses"
     GROUP_ID=86
     OFFSET_FLUSH_INTERVAL_MS=1200
     OFFSET_FLUSH_TIMEOUT_MS=2500

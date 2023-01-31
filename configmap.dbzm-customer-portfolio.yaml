@@ -16,7 +16,7 @@ data:
           "database.dbname": "bank",
           "plugin.name": "pgoutput",
           "publication.name": "dbzm_customer_portfolio",
-          "database.server.name": "sgia.prod.cdc",
+          "database.server.name": "depart.prod.cdc",
           "slot.name": "dbzm_customer_portfolio",
           "slot.drop.on.stop": "true",
           "decimal.handling.mode": "double",
@@ -36,9 +36,9 @@ data:
 
   .envs: |-
     #{ Dynamic (custom for each connector)
-    CONFIG_STORAGE_TOPIC="sgia.prod.cdct.configs.customerportfolio"
-    OFFSET_STORAGE_TOPIC="sgia.prod.cdct.offsets.customerportfolio"
-    STATUS_STORAGE_TOPIC="sgia.prod.cdct.statuses.customerportfolio"
+    CONFIG_STORAGE_TOPIC="depart.prod.cdct.configs.customerportfolio"
+    OFFSET_STORAGE_TOPIC="depart.prod.cdct.offsets.customerportfolio"
+    STATUS_STORAGE_TOPIC="depart.prod.cdct.statuses.customerportfolio"
     GROUP_ID=debeziumcustomerportfolio
     OFFSET_FLUSH_INTERVAL_MS=1200
     OFFSET_FLUSH_TIMEOUT_MS=2500
