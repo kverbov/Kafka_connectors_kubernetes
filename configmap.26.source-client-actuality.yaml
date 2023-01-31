@@ -1,0 +1,111 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: source-siebel-client-actuality
+  namespace: dbzm-prod
+data:
+  source-siebel-client-actuality.st_dbo_tasks.connector.config.json: |-
+    {
+       "name": "st_dbo_tasks",
+       "config": {
+          "name": "st_dbo_tasks",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL_STG",
+          "table.whitelist": "SIEBEL_STG.ST_DBO_TASKS",
+          "topic.prefix": "siebel.prod.cdc.client.actuality.",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "table.types": "VIEW",
+          "poll.interval.ms": 30000
+       }
+    }
+
+  source-siebel-client-actuality.st_remed_tasks.connector.config.json: |-
+    {
+       "name": "st_remed_tasks",
+       "config": {
+          "name": "st_remed_tasks",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "table.whitelist": "SIEBEL.REMED_TASKS",
+          "topic.prefix": "siebel.prod.cdc.client.actuality.",
+          "mode": "timestamp",
+          "timestamp.column.name": "CONTACT_DATE",
+          "table.types": "TABLE",
+          "poll.interval.ms": 30000
+       }
+    }
+
+  .envs: |-
+    #{ Dynamic (custom for each connector)
+    CONFIG_STORAGE_TOPIC="siebel.prod.cdct.source.configs.client.actuality"
+    OFFSET_STORAGE_TOPIC="siebel.prod.cdct.source.offsets.client.actuality"
+    STATUS_STORAGE_TOPIC="siebel.prod.cdct.source.statuses.client.actuality"
+    GROUP_ID=26
+    OFFSET_FLUSH_INTERVAL_MS=1200
+    OFFSET_FLUSH_TIMEOUT_MS=2500
+    SHUTDOWN_TIMEOUT=2000
+    #}
+
+    #{ Static (rarely changed)
+      #{ Common part
+    REST_HOST_NAME="192.168.1.2"
+    ADVERTISED_HOST_NAME="192.168.1.2"
+    CONNECT_OFFSET_STORAGE_PARTITIONS=1
+    CONNECT_CONFIG_STORAGE_PARTITIONS=1
+    CONNECT_STATUS_STORAGE_PARTITIONS=1
+    CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=-1
+    CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=-1
+    CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=-1
+    CONNECT_OFFSET_STORAGE_CLEANUP_POLICY="compact"
+    CONNECT_CONFIG_STORAGE_CLEANUP_POLICY="compact"
+    CONNECT_STATUS_STORAGE_CLEANUP_POLICY="compact"
+      #}
+
+      #{ for retail cluster of Kafka
+    BOOTSTRAP_SERVERS="servername.domain.department:9093,servername"
+    CONNECT_SECURITY_PROTOCOL="SSL"
+    CONNECT_CONSUMER_SECURITY_PROTOCOL="SSL"
+    CONNECT_PRODUCER_SECURITY_PROTOCOL="SSL"
+    CONNECT_SSL_.rrrTSTORE_LOCATION="/kafka/.ssl/kafka.retail.prod..rrrtstore.jks"
+    CONNECT_PRODUCER_SSL_.rrrTSTORE_LOCATION="/kafka/.ssl/kafka.retail.prod..rrrtstore.jks"
+    CONNECT_CONSUMER_SSL_.rrrTSTORE_LOCATION="/kafka/.ssl/kafka.retail.prod..rrrtstore.jks"
+    CONNECT_SSL_.rrrTSTORE_PASSWORD="password"
+    CONNECT_PRODUCER_SSL_.rrrTSTORE_PASSWORD="password"
+    CONNECT_CONSUMER_SSL_.rrrTSTORE_PASSWORD="password"
+      #}
+    #}
+
+  # only for extra properties that are not in base image's /kafka/config.orig/connect-distributed.properties file
+  extra.connect-distributed.properties: |
+    # nothing extra (yet)
+
+  log4j.properties: |-
+    log4j.rootLogger=INFO, console, gelf
+
+    # Disable excessive reflection warnings - KAFKA-5229
+    log4j.logger.org.reflections=ERROR
+
+    log4j.appender.console=org.apache.log4j.ConsoleAppender
+    log4j.appender.console.threshold=INFO
+    log4j.appender.console.layout=org.apache.log4j.PatternLayout
+    log4j.appender.console.layout.ConversionPattern=%d{ISO8601} %-5p  %X{dbz.connectorType}|%X{dbz.connectorName}|%X{dbz.connectorContext}  %m   [%c]%n
+
+    log4j.appender.gelf=biz.paluch.logging.gelf.log4j.GelfLogAppender
+    log4j.appender.gelf.Threshold=WARN
+    log4j.appender.gelf.Host=udp:mbr-log.bank.rrr.department
+    log4j.appender.gelf.Port=12201
+    log4j.appender.gelf.Version=1.1
+    log4j.appender.gelf.Facility=logstash-gelf
+    log4j.appender.gelf.ExtractStackTrace=true
+    log4j.appender.gelf.FilterStackTrace=true
+    log4j.appender.gelf.MdcProfiling=true
+    log4j.appender.gelf.IncludeFullMdc=true
+    log4j.appender.gelf.AdditionalFields=namespace=dbzm-prod
+    log4j.appender.gelf.TimestampPattern=yyyy-MM-dd'T'HH:mm:ss.SSS

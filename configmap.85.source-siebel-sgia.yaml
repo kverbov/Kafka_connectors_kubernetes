@@ -1,0 +1,277 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: source-siebel-sgia
+  namespace: dbzm-prod
+data:
+  source-siebel-s-contact-sgia.connector.config.json: |-
+    {
+       "name": "source-siebel-s-contact-sgia",
+       "config": {
+          "dialect.name": "OracleDatabaseDialect",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "query": "SELECT * FROM (SELECT s.LAST_UPD, s.ROW_ID, s.ACTIVE_FLG, s.PRIV_FLG, s.SEND_SURVEY_FLG, s.VETERAN_FLG, s.X_GO_NET, s.CON_MANAGER_PER_ID, s.X_VIP_MRSK_EMP_ID, s.X_KYC_NEXT_DT, s.X_KYC_STATUS, s.X_PEP, s.X_COUNTRY_OF_RSDNCE, s.X_VIP_SEGMENT, s.LAST_NAME, s.FST_NAME, s.MID_NAME, s.X_DBO_ID, s.X_INVEST_PROFILE, s.X_INVEST_OBJECTIVE, s.X_INVEST_FILLING_DATE, s.X_QUALIFIED_INVESTOR_FLG, s.BIRTH_DT, s.X_VIP_CURATOR_PRSN_ID, s.X_VIP_FLAG, s.X_SEGMENT_2, s.X_INN, s.PR_ALT_PH_NUM_ID, s.PR_EMAIL_ADDR_ID from database.table_CONTACT s)",
+          "numeric.mapping": "best_fit",
+          "db.timezone": "Europe/Moscow",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "timestamp.initial": -1,
+          "topic.prefix": "sgia.siebel.prod.cdc.S_CONTACT"
+       }
+    }
+
+  source-siebel-s-user-sgia.connector.config.json: |-
+    {
+       "name": "source-siebel-s-user-sgia.connector.config",
+       "config": {
+          "dialect.name": "OracleDatabaseDialect",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "table.whitelist": "S_USER",
+          "table.types": "TABLE",
+          "numeric.mapping": "best_fit",
+          "db.timezone": "Europe/Moscow",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "timestamp.initial": -1,
+          "topic.prefix": "sgia.siebel.prod.cdc."
+       }
+    }
+
+  source-siebel-cx-consent-sgia.connector.config.json: |-
+    {
+       "name": "source-siebel-cx-consent-sgia.connector.config",
+       "config": {
+          "dialect.name": "OracleDatabaseDialect",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "table.whitelist": "CX_CONSENT",
+          "table.types": "TABLE",
+          "numeric.mapping": "best_fit",
+          "db.timezone": "Europe/Moscow",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "timestamp.initial": -1,
+          "topic.prefix": "sgia.siebel.prod.cdc."
+       }
+    }
+
+  source-siebel-cx-consent-type-sgia.connector.config.json: |-
+    {
+       "name": "source-siebel-cx-consent-type-sgia.connector.config",
+       "config": {
+          "dialect.name": "OracleDatabaseDialect",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "table.whitelist": "CX_CONSENT_TYPE",
+          "table.types": "TABLE",
+          "numeric.mapping": "best_fit",
+          "db.timezone": "Europe/Moscow",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "topic.prefix": "sgia.siebel.prod.cdc."
+       }
+    }
+
+  source-siebel-cx-cont-idents-query-sgia.connector.config.json: |-
+    {
+       "name": "source-siebel-cx-cont-idents-query-sgia.connector.config",
+       "config": {
+          "dialect.name": "OracleDatabaseDialect",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "query": "SELECT * FROM (SELECT ROW_ID, CREATED, CREATED_BY, LAST_UPD, LAST_UPD_BY, MODIFICATION_NUM, CONFLICT_ID, CON_BIS_ID, UNIT, BIRTH_DT, DB_LAST_UPD, DOC_NUMBER, DOC_SERIES, LAST_UPD_IN_BIS, X_MGR_EP_CUSTOMER_ID, X_MGR_EP_ID, X_MGR_LOAD_ID, X_MGR_SRC_ID, X_MGR_SRC_UPDATED, BIS_CODE, CON_ID, CON_TYPE, DB_LAST_UPD_SRC, DOC_TYPE, FULL_NAME, DEPARTMENT, BANK_SERVICE_CODE, BANK_SERVICE_DT, CLOSED_FLG, SALARY_PR_CODE, SALARY_PR_NAME, SECRET_WORD, START_DT, SELECTED_FLG, SR_ID, START_NOUPD_DT, VIP_CURATOR_ID, VIP_SEGMENT, ABS_CODE, ABS_SYNC_FLG, LE_ID, TARIF_GROUP, TARIF_GROUP_CODE, ACTIVE_STATUS, ISFULLANKETA_FLG, LE_BIS_REL_FLG, UPDATED_FLG, ABS_ID, CORE_BANK_SYSTEM_NAME, EXTSYS_TYPE, X_CONTACT_TYPE_SR, COMMISSION_FREQUENCY from database.table_CONT_IDENTS)",
+          "numeric.mapping": "best_fit",
+          "db.timezone": "Europe/Moscow",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "timestamp.initial": -1,
+          "topic.prefix": "sgia.siebel.prod.cdc.CX_CONT_IDENTS"
+       }
+    }
+
+
+  source-siebel-employee-query-sgia.connector.config.json: |-
+    {
+       "name": "source-siebel-employee-query-sgia.connector.config",
+       "config": {
+          "dialect.name": "OracleDatabaseDialect",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "query": "SELECT * FROM (SELECT s.ROW_ID, u.LOGIN , UPPER(s.LAST_NAME) AS LAST_NAME, UPPER(s.FST_NAME) AS FST_NAME, UPPER(s.MID_NAME) AS MID_NAME, UPPER(s.JOB_TITLE) AS JOB_TITLE, s.LAST_UPD from database.table_CONTACT s LEFT JOIN SIEBEL.S_USER u ON u.ROW_ID = s.ROW_ID WHERE s.ROW_ID IN (SELECT DISTINCT X_VIP_CURATOR_PRSN_ID from database.table_CONTACT s WHERE s.X_VIP_FLAG = 'Y' OR s.X_SEGMENT_2 = 'Premium' UNION SELECT DISTINCT CON_MANAGER_PER_ID from database.table_CONTACT s WHERE s.X_VIP_FLAG = 'Y' OR s.X_SEGMENT_2 = 'Premium' UNION SELECT DISTINCT X_VIP_MRSK_EMP_ID from database.table_CONTACT s WHERE s.X_VIP_FLAG = 'Y' OR s.X_SEGMENT_2 = 'Premium'))",
+          "numeric.mapping": "best_fit",
+          "db.timezone": "Europe/Moscow",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "topic.prefix": "sgia.siebel.prod.cdc.employee"
+       }
+    }
+
+  source-siebel-s-per-comm-addr-query-sgia.connector.config.json: |-
+    {
+       "name": "source-siebel-s-per-comm-addr-query-sgia.connector.config",
+       "config": {
+          "dialect.name": "OracleDatabaseDialect",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "query": "SELECT * FROM (SELECT sp.ROW_ID, sp.LAST_UPD, sp.MODIFICATION_NUM, sp.CONFLICT_ID, sp.ADDR, sp.COMM_MEDIUM_CD, sp.PER_ID, sp.YEARLY_END_DT, sp.YEARLY_START_DT, sp.COMM_USE_TYPE_CD, sp.DB_LAST_UPD_SRC, sp.X_CONFIRM_CODE, sp.X_CONFIRM_FLG, sp.X_LANDLINE_FLG, sp.X_OPTY_CON_ID, sp.X_STATUS, sp.X_VALIDATED_FLG, sp.X_COPY_FROM_CON_FLG, sp.X_CONFIRM_CHANGE_FLG, sp.X_ACTIVE_NOTIFICATION_FLG, sp.X_MAIN_FLG, sp.X_DBO_PRO_FLG from database.table_PER_COMM_ADDR sp)",
+          "numeric.mapping": "best_fit",
+          "db.timezone": "Europe/Moscow",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "timestamp.initial": -1,
+          "topic.prefix": "sgia.siebel.prod.cdc.S_PER_COMM_ADDR"
+       }
+    }
+
+  source-siebel-cx-prem-pm-query-sgia.connector.config.json: |-
+    {
+       "name": "source-siebel-cx-prem-pm-query-sgia.connector.config",
+       "config": {
+          "dialect.name": "OracleDatabaseDialect",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "query": "SELECT * FROM (SELECT cpp.ROW_ID, cpp.LAST_UPD, cpp.CLIENT_ID, cpp.ERROR_TEXT, cpp.PM_DO, cpp.PM_RB, cpp.STATUS  from database.table_PREM_PM cpp)",
+          "numeric.mapping": "best_fit",
+          "db.timezone": "Europe/Moscow",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "timestamp.initial": -1,
+          "topic.prefix": "sgia.siebel.prod.cdc.cx_prem_pm"
+       }
+    }
+
+  source-siebel-cx-vip-spc-attr-query-sgia.connector.config.json: |-
+    {
+       "name": "source-siebel-cx-vip-spc-attr-query-sgia.connector.config",
+       "config": {
+          "dialect.name": "OracleDatabaseDialect",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "query": "SELECT * FROM (SELECT x.ROW_ID, x.LAST_UPD, x.COMM_ID, x.CONTACT_ID, x.NAME_CD, x.STATUS_CD from database.table_VIP_SPC_ATTR x)",
+          "numeric.mapping": "best_fit",
+          "db.timezone": "Europe/Moscow",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "timestamp.initial": -1,
+          "topic.prefix": "sgia.siebel.prod.cdc.cx_vip_spc_attr"
+       }
+    }
+
+  source-siebel-cx_glddbl_con-sgia.connector.config.json: |-
+    {
+       "name": "source-siebel-cx_glddbl_con-sgia.connector.config",
+       "config": {
+          "dialect.name": "OracleDatabaseDialect",
+          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+          "connection.url": "jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmossmsi-scan.bank.rrr.department)(PORT=1525))(ADDRESS=(PROTOCOL=TCP)(HOST=rrr-dbpmos1si-scan.bank.rrr.department)(PORT=1525)))(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=SBNRT_PRIMARY)))",
+          "connection.user": "user",
+          "connection.password": "password",
+          "schema.pattern": "SIEBEL",
+          "table.whitelist": "CX_GLDDBL_CON",
+          "table.types": "TABLE",
+          "numeric.mapping": "best_fit",
+          "db.timezone": "Europe/Moscow",
+          "mode": "timestamp",
+          "timestamp.column.name": "LAST_UPD",
+          "timestamp.initial": 1,
+          "topic.prefix": "sgia.siebel.prod.cdc."
+       }
+    }
+
+    
+  .envs: |-
+    #{ Dynamic (custom for each connector)
+    CONFIG_STORAGE_TOPIC="siebel.prod.sgia.cdct.source.configs"
+    OFFSET_STORAGE_TOPIC="siebel.prod.sgia.cdct.source.offsets"
+    STATUS_STORAGE_TOPIC="siebel.prod.sgia.cdct.source.statuses"
+    GROUP_ID=85
+    OFFSET_FLUSH_INTERVAL_MS=1200
+    OFFSET_FLUSH_TIMEOUT_MS=2500
+    SHUTDOWN_TIMEOUT=2000
+    #}
+
+    #{ Static (rarely changed)
+      #{ Common part
+    REST_HOST_NAME="192.168.1.2"
+    ADVERTISED_HOST_NAME="192.168.1.2"
+    CONNECT_OFFSET_STORAGE_PARTITIONS=1
+    CONNECT_CONFIG_STORAGE_PARTITIONS=1
+    CONNECT_STATUS_STORAGE_PARTITIONS=1
+    CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=-1
+    CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=-1
+    CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=-1
+    CONNECT_OFFSET_STORAGE_CLEANUP_POLICY="compact"
+    CONNECT_CONFIG_STORAGE_CLEANUP_POLICY="compact"
+    CONNECT_STATUS_STORAGE_CLEANUP_POLICY="compact"
+      #}
+
+      #{ for retail cluster of Kafka
+    BOOTSTRAP_SERVERS="servername.domain.department:9093,servername"
+    CONNECT_SECURITY_PROTOCOL="SSL"
+    CONNECT_CONSUMER_SECURITY_PROTOCOL="SSL"
+    CONNECT_PRODUCER_SECURITY_PROTOCOL="SSL"
+    CONNECT_SSL_.rrrTSTORE_LOCATION="/kafka/.ssl/kafka.retail.prod..rrrtstore.jks"
+    CONNECT_PRODUCER_SSL_.rrrTSTORE_LOCATION="/kafka/.ssl/kafka.retail.prod..rrrtstore.jks"
+    CONNECT_CONSUMER_SSL_.rrrTSTORE_LOCATION="/kafka/.ssl/kafka.retail.prod..rrrtstore.jks"
+    CONNECT_SSL_.rrrTSTORE_PASSWORD="password"
+    CONNECT_PRODUCER_SSL_.rrrTSTORE_PASSWORD="password"
+    CONNECT_CONSUMER_SSL_.rrrTSTORE_PASSWORD="password"
+      #}
+    #}
+
+  # only for extra properties that are not in base image's /kafka/config.orig/connect-distributed.properties file
+  extra.connect-distributed.properties: |
+    # nothing extra (yet)
+
+  log4j.properties: |-
+    log4j.rootLogger=INFO, console, gelf
+
+    # Disable excessive reflection warnings - KAFKA-5229
+    log4j.logger.org.reflections=ERROR
+
+    log4j.appender.console=org.apache.log4j.ConsoleAppender
+    log4j.appender.console.threshold=INFO
+    log4j.appender.console.layout=org.apache.log4j.PatternLayout
+    log4j.appender.console.layout.ConversionPattern=%d{ISO8601} %-5p  %X{dbz.connectorType}|%X{dbz.connectorName}|%X{dbz.connectorContext}  %m   [%c]%n
+
+    log4j.appender.gelf=biz.paluch.logging.gelf.log4j.GelfLogAppender
+    log4j.appender.gelf.Threshold=WARN
+    log4j.appender.gelf.Host=udp:mbr-log.bank.rrr.department
+    log4j.appender.gelf.Port=12201
+    log4j.appender.gelf.Version=1.1
+    log4j.appender.gelf.Facility=logstash-gelf
+    log4j.appender.gelf.ExtractStackTrace=true
+    log4j.appender.gelf.FilterStackTrace=true
+    log4j.appender.gelf.MdcProfiling=true
+    log4j.appender.gelf.IncludeFullMdc=true
+    log4j.appender.gelf.AdditionalFields=namespace=dbzm-prod
+    log4j.appender.gelf.TimestampPattern=yyyy-MM-dd'T'HH:mm:ss.SSS

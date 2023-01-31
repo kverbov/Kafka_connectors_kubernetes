@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: client-jaas
+  namespace: dbzm-prod
+data:
+  client-jaas.conf: |-
