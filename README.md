@@ -1,2 +1,2 @@
 # Kafka_connectors_kubernetes
-kafka connectors using kubernetes configmaps
+kafka connectors debezium using kubernetes configmaps
