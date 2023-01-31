@@ -5,7 +5,7 @@ metadata:
   namespace: dbzm-prod
 binaryData:
   kafka.integration.layer..rrrtstore.jks: 
-  gtsretailkafka.keytab: 
+  gretailkafka.keytab: 
 data:
   mm-rbkafka.connector.config.json: |-
     {
@@ -16,7 +16,7 @@ data:
           "target.cluster.alias": "retail",
           "source.cluster.bootstrap.servers": "kafka.domain.department:9092",
           "target.cluster.bootstrap.servers": "servername.domain.department:9093,servername",
-          "source.group.id": "gtsretailkafka",
+          "source.group.id": "gretailkafka",
           "target.group.id": "mm-rbkafka",
           "topics": " .*PHUB.SendDocumentPaymentFinishStatus, .*PHUB.SendDocumentPaymentProcStatus",
           "topics.blacklist": ".*-connect-.*",
@@ -31,7 +31,7 @@ data:
           "source.cluster.security.protocol" : "SASL_SSL",
           "source.cluster.sasl.mechanism" : "GSSAPI",
           "source.cluster.sasl.kerberos.service.name" : "kafka",
-          "source.cluster.sasl.jaas.config" : "com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true keyTab=\"/kafka/mounted/gtsretailkafka.keytab\" principal=\"gtsretailkafka@domain.department\";",
+          "source.cluster.sasl.jaas.config" : "com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true keyTab=\"/kafka/mounted/gretailkafka.keytab\" principal=\"gretailkafka@domain.department\";",
           "source.cluster.client.dns.lookup": "use_all_dns_ips",
           "source.cluster.ssl..rrrtstore.location": "/kafka/mounted/kafka.integration.layer..rrrtstore.jks",
           "source.cluster.ssl..rrrtstore.password": "password",
