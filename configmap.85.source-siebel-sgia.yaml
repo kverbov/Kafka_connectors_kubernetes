@@ -156,7 +156,7 @@ data:
           "connection.user": "user",
           "connection.password": "password",
           "schema.pattern": "SIEBEL",
-          "query": "SELECT * FROM (SELECT cpp.ROW_ID, cpp.LAST_UPD, cpp.CLIENT_ID, cpp.ERROR_TEXT, cpp.PM_DO, cpp.PM_RB, cpp.STATUS  from database.table_PREM_PM cpp)",
+          "query": "SELECT * FROM (SELECT cpp.ROW_ID, cpp.LAST_UPD, cpp.CLIENT_ID, cpp.ERROR_TEXT, cpp.PM_DO, cpp.PM_rr, cpp.STATUS  from database.table_PREM_PM cpp)",
           "numeric.mapping": "best_fit",
           "db.timezone": "Europe/Moscow",
           "mode": "timestamp",

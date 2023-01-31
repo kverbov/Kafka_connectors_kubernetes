@@ -4,9 +4,9 @@ metadata:
   name: source-sas-ma
   namespace: dbzm-prod
 data:
-  source-sas-ma.integration.rb-splash.connector.config.json: |-
+  source-sas-ma.integration.rr-splash.connector.config.json: |-
     {
-       "name": "rb-splash",
+       "name": "rr-splash",
        "config": {
           "dialect.name": "OracleDatabaseDialect",
           "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
@@ -14,14 +14,14 @@ data:
           "connection.user": "user",
           "connection.password": "password",
           "schema.pattern": "INTEGRATION",
-          "table.whitelist": "INTEGRATION.INT_RB_SPLASH",
+          "table.whitelist": "INTEGRATION.INT_rr_SPLASH",
           "topic.prefix": "sasma.prod.cdc.",
           "mode": "timestamp",
           "timestamp.column.name": "CREATE_DATE",
           "transforms": "TopicRename",
           "transforms.TopicRename.type": "org.apache.kafka.connect.transforms.RegexRouter",
           "transforms.TopicRename.regex": "(.+)",
-          "transforms.TopicRename.replacement": "sasma.prod.cdc.integration.rbsplash"
+          "transforms.TopicRename.replacement": "sasma.prod.cdc.integration.rrsplash"
        }
     }
 
@@ -48,9 +48,9 @@ data:
        }
     }
 
-  source-sas-ma.integration.rb-chat.connector.config.json: |-
+  source-sas-ma.integration.rr-chat.connector.config.json: |-
     {
-       "name": "rb-chat",
+       "name": "rr-chat",
        "config": {
           "dialect.name": "OracleDatabaseDialect",
           "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
@@ -58,20 +58,20 @@ data:
           "connection.user": "user",
           "connection.password": "password",
           "schema.pattern": "INTEGRATION",
-          "table.whitelist": "INTEGRATION.INT_RB_CHAT",
+          "table.whitelist": "INTEGRATION.INT_rr_CHAT",
           "topic.prefix": "sasma.prod.cdc.",
           "mode": "timestamp",
           "timestamp.column.name": "CREATE_DATE",
           "transforms": "TopicRename",
           "transforms.TopicRename.type": "org.apache.kafka.connect.transforms.RegexRouter",
           "transforms.TopicRename.regex": "(.+)",
-          "transforms.TopicRename.replacement": "sasma.prod.cdc.integration.rbchat"
+          "transforms.TopicRename.replacement": "sasma.prod.cdc.integration.rrchat"
        }
     }
 
-  source-sas-ma.integration.rb-banner.connector.config.json: |-
+  source-sas-ma.integration.rr-banner.connector.config.json: |-
     {
-       "name": "rb-banner",
+       "name": "rr-banner",
        "config": {
           "dialect.name": "OracleDatabaseDialect",
           "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
@@ -79,14 +79,14 @@ data:
           "connection.user": "user",
           "connection.password": "password",
           "schema.pattern": "INTEGRATION",
-          "table.whitelist": "INTEGRATION.INT_RB_BANNER",
+          "table.whitelist": "INTEGRATION.INT_rr_BANNER",
           "topic.prefix": "sasma.prod.cdc.",
           "mode": "timestamp",
           "timestamp.column.name": "CREATE_DATE",
           "transforms": "TopicRename",
           "transforms.TopicRename.type": "org.apache.kafka.connect.transforms.RegexRouter",
           "transforms.TopicRename.regex": "(.+)",
-          "transforms.TopicRename.replacement": "sasma.prod.cdc.integration.rbbanner"
+          "transforms.TopicRename.replacement": "sasma.prod.cdc.integration.rrbanner"
        }
     }
     

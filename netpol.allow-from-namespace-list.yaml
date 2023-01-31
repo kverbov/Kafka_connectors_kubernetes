@@ -12,7 +12,7 @@ spec:
             network.openshift.io/policy-group: ingress
       - namespaceSelector:
           matchLabels:
-            name: drbs-common
+            name: drrs-common
       - namespaceSelector:
           matchLabels:
             name: openshift-user-workload-monitoring

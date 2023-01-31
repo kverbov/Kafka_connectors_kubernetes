@@ -1,23 +1,23 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mm-rbkafka
+  name: mm-rrkafka
   namespace: dbzm-prod
 binaryData:
   kafka.integration.layer..rrrtstore.jks: 
   gretailkafka.keytab: 
 data:
-  mm-rbkafka.connector.config.json: |-
+  mm-rrkafka.connector.config.json: |-
     {
-      "name": "mm-rbkafka",
+      "name": "mm-rrkafka",
       "config": {
           "connector.class": "org.apache.kafka.connect.mirror.MirrorSourceConnector",
-          "source.cluster.alias": "rbkafka",
+          "source.cluster.alias": "rrkafka",
           "target.cluster.alias": "retail",
           "source.cluster.bootstrap.servers": "kafka.domain.department:9092",
           "target.cluster.bootstrap.servers": "servername.domain.department:9093,servername",
           "source.group.id": "gretailkafka",
-          "target.group.id": "mm-rbkafka",
+          "target.group.id": "mm-rrkafka",
           "topics": " .*PHUB.SendDocumentPaymentFinishStatus, .*PHUB.SendDocumentPaymentProcStatus",
           "topics.blacklist": ".*-connect-.*",
           "sync.topic.configs.enabled": "false",
@@ -30,8 +30,8 @@ data:
           "emit.checkpoints.enabled":  "false",
           "source.cluster.security.protocol" : "SASL_SSL",
           "source.cluster.sasl.mechanism" : "GSSAPI",
-          "source.cluster.sasl.kerberos.service.name" : "kafka",
-          "source.cluster.sasl.jaas.config" : "com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true keyTab=\"/kafka/mounted/gretailkafka.keytab\" principal=\"gretailkafka@domain.department\";",
+          "source.cluster.sasl.kerreros.service.name" : "kafka",
+          "source.cluster.sasl.jaas.config" : "com.sun.security.auth.module.Krr5LoginModule required useKeyTab=true storeKey=true keyTab=\"/kafka/mounted/gretailkafka.keytab\" principal=\"gretailkafka@domain.department\";",
           "source.cluster.client.dns.lookup": "use_all_dns_ips",
           "source.cluster.ssl..rrrtstore.location": "/kafka/mounted/kafka.integration.layer..rrrtstore.jks",
           "source.cluster.ssl..rrrtstore.password": "password",
@@ -42,7 +42,7 @@ data:
       }
     }
 
-  krb5.conf: |-
+  krr5.conf: |-
     [libdefaults]
       renew_lifetime = 7d
       forwardable = true
@@ -50,7 +50,7 @@ data:
       ticket_lifetime = 24h
       dns_lookup_realm = false
       dns_lookup_kdc = false
-      default_ccache_name = /tmp/krb5cc_%{uid}
+      default_ccache_name = /tmp/krr5cc_%{uid}
 
     [domain_realm]
       .domain.department = domain.department
@@ -64,10 +64,10 @@ data:
 
   .envs: |-
     #{ Dynamic (custom for each connector)
-    CONFIG_STORAGE_TOPIC="rbkafka.prod.mm.configs"
-    OFFSET_STORAGE_TOPIC="rbkafka.prod.mm.offsets"
-    STATUS_STORAGE_TOPIC="rbkafka.prod.mm.statuses"
-    GROUP_ID=mm-rbkafka
+    CONFIG_STORAGE_TOPIC="rrkafka.prod.mm.configs"
+    OFFSET_STORAGE_TOPIC="rrkafka.prod.mm.offsets"
+    STATUS_STORAGE_TOPIC="rrkafka.prod.mm.statuses"
+    GROUP_ID=mm-rrkafka
     OFFSET_FLUSH_INTERVAL_MS=1200
     OFFSET_FLUSH_TIMEOUT_MS=2500
     SHUTDOWN_TIMEOUT=2000
@@ -76,7 +76,7 @@ data:
     VALUE_CONVERTER="org.apache.kafka.connect.converters.ByteArrayConverter"
     CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE=false
     KAFKA_OPTS="
-    -Dsun.security.krb5.debug=false
+    -Dsun.security.krr5.debug=false
     -Djava.security.kservername.conf
     -Djavax.security.auth.useSubjectCredsOnly=false"
     #}

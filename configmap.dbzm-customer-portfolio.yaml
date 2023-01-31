@@ -21,7 +21,7 @@ data:
           "slot.drop.on.stop": "true",
           "decimal.handling.mode": "double",
           "schema.include.list": "customer_portfolio",
-          "table.include.list": "customer_portfolio.du_tkb_dm,customer_portfolio.iis_rb_capital_dm,customer_portfolio.opif_rb_capital_dm,customer_portfolio.sdu_tkb_dm,customer_portfolio.insurance_dm",
+          "table.include.list": "customer_portfolio.du_tkb_dm,customer_portfolio.iis_rr_capital_dm,customer_portfolio.opif_rr_capital_dm,customer_portfolio.sdu_tkb_dm,customer_portfolio.insurance_dm",
           "time.precision.mode": "adaptive",
           "snapshot.mode": "initial",
           "snapshot.isolation.mode": "read_committed",

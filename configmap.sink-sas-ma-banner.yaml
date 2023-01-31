@@ -4,16 +4,16 @@ metadata:
   name: sink-sas-ma-banner
   namespace: dbzm-prod
 data:
-  sink.sasma.integration.intrbbannerstatus.json: |-
+  sink.sasma.integration.intrrbannerstatus.json: |-
     {
-       "name": "sink.sasma.integration.intrbbannerstatus",
+       "name": "sink.sasma.integration.intrrbannerstatus",
        "config": {
           "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
           "connection.url": "jdbc:oracle:thin:@(description=(address=(host=rrr-dbpmos0sm-scan.bank.rrr.department)(protocol=tcp)(port=1525))(connect_data=(service_name=smnrt_primary)(server=dedicated)(UR=A)))",
           "connection.user": "user",
           "connection.password": "password",
           "topics": "sasma.prod.advertising.banner.create.result",
-          "table.name.format": "INTEGRATION.INT_RB_BANNER_STATUS",
+          "table.name.format": "INTEGRATION.INT_rr_BANNER_STATUS",
           "transforms.convert.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
           "transforms.convert.target.type": "Timestamp",
           "transforms.convert.format": "yyyy-MM-dd HH:mm:ss",

@@ -17,13 +17,13 @@ data:
           "schema.pattern": "EXCHANGE",
           "query": "SELECT * FROM (SELECT * from database.table_CONTACT WHERE EXCHANGE.SMS_CONTACT.CONTACT_ID >= (SELECT max(CONTACT_ID-1000) from database.table_CONTACT) AND PRIORITY_ORDER = 3 ORDER BY EXCHANGE.SMS_CONTACT.CONTACT_ID ASC)",
           "numeric.mapping": "best_fit",
-          "topic.prefix": "rbauto.prod.cdc.",
+          "topic.prefix": "rrauto.prod.cdc.",
           "mode": "incrementing",
           "incrementing.column.name": "CONTACT_ID",
           "transforms": "TopicRename",
           "transforms.TopicRename.type": "org.apache.kafka.connect.transforms.RegexRouter",
           "transforms.TopicRename.regex": "(.+)",
-          "transforms.TopicRename.replacement": "rbauto.prod.cdc.exchange.smscontact"
+          "transforms.TopicRename.replacement": "rrauto.prod.cdc.exchange.smscontact"
        }
     }
     
@@ -39,7 +39,7 @@ data:
           "db.timezone": "Europe/Moscow",
           "schema.pattern": "EXCHANGE",
           "query": "SELECT * FROM (SELECT * from database.table_CONTACT WHERE EXCHANGE.SMS_CONTACT.CONTACT_ID >= (SELECT max(CONTACT_ID-192.168.1.2) from database.table_CONTACT) AND PRIORITY_ORDER = 500 ORDER BY EXCHANGE.SMS_CONTACT.CONTACT_ID ASC)",
-          "topic.prefix": "rbauto.prod.cdc.",
+          "topic.prefix": "rrauto.prod.cdc.",
           "numeric.mapping": "best_fit",
           "mode": "incrementing",
           "incrementing.column.name": "CONTACT_ID",
@@ -47,15 +47,15 @@ data:
           "transforms": "TopicRename",
           "transforms.TopicRename.type": "org.apache.kafka.connect.transforms.RegexRouter",
           "transforms.TopicRename.regex": "(.+)",
-          "transforms.TopicRename.replacement": "rbauto.prod.cdc.exchange.smscontact"
+          "transforms.TopicRename.replacement": "rrauto.prod.cdc.exchange.smscontact"
        }
     }
 
   .envs: |-
     #{ Dynamic (custom for each connector)
-    CONFIG_STORAGE_TOPIC="rbauto.prod.cdct.source.configs.smscontact"
-    OFFSET_STORAGE_TOPIC="rbauto.prod.cdct.source.offsets.smscontact"
-    STATUS_STORAGE_TOPIC="rbauto.prod.cdct.source.statuses.smscontact"
+    CONFIG_STORAGE_TOPIC="rrauto.prod.cdct.source.configs.smscontact"
+    OFFSET_STORAGE_TOPIC="rrauto.prod.cdct.source.offsets.smscontact"
+    STATUS_STORAGE_TOPIC="rrauto.prod.cdct.source.statuses.smscontact"
     GROUP_ID=53
     OFFSET_FLUSH_INTERVAL_MS=1200
     OFFSET_FLUSH_TIMEOUT_MS=2500

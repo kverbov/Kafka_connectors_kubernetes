@@ -13,7 +13,7 @@ data:
           "database.port": "443",
           "database.user": "user",
           "database.password": "password",
-          "database.dbname": "drbs",
+          "database.dbname": "drrs",
           "plugin.name": "pgoutput",
           "publication.name": "dbzm_gmfc",
           "database.server.name": "rdbo.prod.cdc",

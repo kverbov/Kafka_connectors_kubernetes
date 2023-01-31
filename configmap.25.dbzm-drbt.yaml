@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: debezium-drbt
+  name: debezium-drrt
   namespace: dbzm-prod
 data:
-  dbzm-drbt.connector.config.json: |-
+  dbzm-drrt.connector.config.json: |-
     {
        "name": "prod",
        "config": {
@@ -13,15 +13,15 @@ data:
           "database.port": "443",
           "database.user": "user",
           "database.password": "password",
-          "database.dbname": "drbs",
+          "database.dbname": "drrs",
           "plugin.name": "pgoutput",
-          "publication.name": "dbzm_drbt",
+          "publication.name": "dbzm_drrt",
           "database.server.name": "rdbo.prod.cdc",
-          "slot.name": "dbzm_drbt",
+          "slot.name": "dbzm_drrt",
           "slot.drop.on.stop": "false",
-          "schema.include.list": "drbt",
-          "table.include.list": "drbt.instruction",
-          "column.include.list": "drbt.instruction.user_id,drbt.instruction.product_id,drbt.instruction.rb_account_id,drbt.instruction.state,drbt.instruction.bank_partner_id",
+          "schema.include.list": "drrt",
+          "table.include.list": "drrt.instruction",
+          "column.include.list": "drrt.instruction.user_id,drrt.instruction.product_id,drrt.instruction.rr_account_id,drrt.instruction.state,drrt.instruction.bank_partner_id",
           "heartbeat.interval.ms": "60000",
           "heartbeat.action.query": "UPDATE public.debezium_heartbeat SET heartbeat = '1'",
           "time.precision.mode": "connect"
@@ -30,9 +30,9 @@ data:
 
   .envs: |-
     #{ Dynamic (custom for each connector)
-    CONFIG_STORAGE_TOPIC="rdbo.prod.cdct.configs.drbt"
-    OFFSET_STORAGE_TOPIC="rdbo.prod.cdct.offsets.drbt"
-    STATUS_STORAGE_TOPIC="rdbo.prod.cdct.statuses.drbt"
+    CONFIG_STORAGE_TOPIC="rdbo.prod.cdct.configs.drrt"
+    OFFSET_STORAGE_TOPIC="rdbo.prod.cdct.offsets.drrt"
+    STATUS_STORAGE_TOPIC="rdbo.prod.cdct.statuses.drrt"
     GROUP_ID=25
     OFFSET_FLUSH_INTERVAL_MS=1200
     OFFSET_FLUSH_TIMEOUT_MS=2500
